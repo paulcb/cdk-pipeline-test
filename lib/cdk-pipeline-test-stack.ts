@@ -18,10 +18,7 @@ export class CdkPipelineTestStack extends cdk.Stack {
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'MyPipeline',
       synth: new ShellStep('Synth', {
-        input: CodePipelineSource.gitHub('paulcb/cdk-pipline-test', 'main', {
-          // This is optional
-          authentication: cdk.SecretValue.secretsManager('githubtoken1'),
-        }),
+        input: CodePipelineSource.gitHub('paulcb/cdk-pipeline-test', 'main'),
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
     });
